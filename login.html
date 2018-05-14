@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+<link href="css/login.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+ <div id="menuBar">
+    <div id="menu2" class="menu"><img src="images/news.png">
+    	<ul>
+                <li>
+                    <a href="home.html">首页</a>
+                </li>
+                <li>
+                    <a href="sports.html">体育</a>
+                </li>
+                <li>
+                    <a href="technoloy.html">科技</a>
+                </li>
+                <li>
+                    <a href="entertainment.html">娱乐</a>
+                </li>
+                <li>
+                    <a href="politics.html">时政</a>
+                </li>
+                <li>
+                    <a href="views.html">观点</a>
+                </li>
+        </ul>
+    </div>
+ 	<div id="content">
+ 	    <ul id="ul1">
+ 	    	<li><div class="step">1</div>	填写信息</li>
+ 	    	<li><div class="step">2</div>验证</li>
+ 	    	<li><div class="step">3</div>	注册成功</li>
+ 	    </ul>
+ 		<div id="zhuce">
+ 		    <!-- <img src="" class="img"> -->
+ 			<input type="text" class="text" value="请输入用户名">
+ 			<div class="err"></div>
+ 			<input type="text" class="text" value="请输入密码">
+ 			<div class="err"></div>
+ 			<div class="err">
+ 				<ul id="ul2">
+ 					<li>密码强度：</li>
+ 					<li>弱</li>
+ 					<li>中</li>
+ 					<li>强</li>
+ 				</ul>
+ 			</div>
+ 			<input type="text" class="text" value="确认密码">
+ 			<div class="err"></div>
+ 			<input type="button" value="确定" id="btn" disabled="ture">
+ 		</div>
+ 	</div>
+ 	<div id="bottom">©2017 News-Team All rights reserved.</div>
+ </div>
+ <script src="js/jquery-3.2.1.min.js"></script>
+ <script src="js/home.js">
+    </script>
+</body>
+    <script type="text/javascript">
+    	var step=document.getElementsByClassName('step');
+    	var content=document.getElementById('content');
+    	var zhuce=document.getElementById('zhuce');
+    	var btn=document.getElementById('btn');
+    	var li=content.getElementsByTagName('ul')[0].getElementsByTagName('li');
+    	li[0].style.color='black';
+    	step[0].style.background='#33cc66';
+    	// zhuce.getElementsByTagName('img')[0].src='images/'+1+'.jpg';
+    	window.onload=function(){
+    		var a=document.getElementsByClassName("text");
+    		var b=document.getElementsByClassName('err');
+    		b[1].style.display='none';
+			for (var i = 0; i < a.length; i++) {
+				a[i].onfocus=function(){
+					if(this.value!=null){
+						this.value='';
+
+					}
+					this.type='text';
+               
+				}
+			}
+	        a[0].onblur=function(){
+	        	checkusename();
+	        }
+		    a[1].onblur=function(){
+		    	psw();
+		    }
+		    a[2].onblur=function(){
+		    	checkpsw();
+		    }
+		    btn.onclick=function(){
+		    	window.location.href="confirm.html";
+		    }
+    	}
+    	function checkusename(){
+				var a=document.getElementsByClassName('err')[0];
+				var b=document.getElementsByClassName("text");
+				a.style.color='red';
+				 var c=new RegExp("^[0-9]*$");
+				b[0].value==b[0].innerHTML;
+				if(b[0].value==0){a.innerHTML='用户名不能为空!';
+				btn.disabled=true;
+        		btn.style.background="#d4d4d4";
+				}
+                else if (c.test(b[0].value)) {
+                       a.innerHTML='用户名不可都为数字！';
+                       btn.disabled=true;
+        		btn.style.background="#d4d4d4";
+                }
+				else{a.innerHTML='';
+				}
+				
+			}
+		function psw(){
+        	var a=document.getElementById('ul2').getElementsByTagName('li');
+        	var b=document.getElementsByClassName('text');
+        	var c=document.getElementsByClassName('err')[1];
+        	c.style.color='red';
+        	var d=b[1].value;
+        	b[1].value==b[1].innerHTML;
+        	if(b[1].value==0){
+        		c.style.display='block';
+        		c.innerHTML='密码不能为空！';
+        	btn.disabled=true;
+        		btn.style.background="#d4d4d4";
+                  for (var i = 0; i < a.length; i++) {
+                  	a[i].style.color="black";
+                  	a[i].style.background="none";
+                  }}
+        	 else if(0<d.length&&d.length<=3){
+        	 	c.style.display='none';
+        		a[0].style.color="black";
+        		a[0].style.background="#d4d4d4"
+                a[1].style.background="#33cc66"
+        		a[2].style.background="none"
+        		a[3].style.background="none"
+        		c.innerHTML='';
+        		b[1].type='password';	
+        	}
+        	 else if(3<d.length&&d.length<=6){
+        		c.style.display='none';
+        		a[0].style.color="black";
+        		a[0].style.background="#d4d4d4"
+                a[1].style.background="none"
+        		a[2].style.background="#33cc66"
+        		a[3].style.background="none"
+        		c.innerHTML='';
+        		b[1].type='password';	
+                
+        	}
+        	else if(6<d.length&&d.length){
+        		c.style.display='none';
+        		a[0].style.color="black";
+        		a[0].style.background="#d4d4d4"
+                a[1].style.background="none"
+        		a[2].style.background="none"
+        		a[3].style.background="#33cc66"
+        		c.innerHTML='';
+        		b[1].type='password';	
+                }
+        		      	    
+        }
+        function checkpsw(){
+        	var a=document.getElementsByClassName('err')[3];
+        	a.style.color='red';
+        	var b=document.getElementsByClassName("text");
+            var c=new RegExp("^[0-9]*$");
+        	b[2].value==b[2].innerHTML;
+        	b[1].value==b[1].innerHTML;
+        	if(b[2].value!=b[1].value){
+                a.innerHTML="两次密码不一致！";
+                btn.disabled=true;
+        		btn.style.background="#d4d4d4";
+        	}
+        	else if(b[0].value=="请输入用户名"||c.test(b[0].value)){
+				btn.disabled=true;
+        		btn.style.background="#d4d4d4";
+				}
+        	else{a.innerHTML="";
+        btn.disabled=false;
+        		btn.style.background="#33cc66";}
+        		b[2].type='password';
+        		
+        }
+    </script>
+</html>
